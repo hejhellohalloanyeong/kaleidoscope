@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+    <script src="js/p5.js"></script>
+    <script>
+        let img;
+        let vid;
+        let theta = 0;
+
+        function setup() {
+        createCanvas(windowWidth, windowHeight, WEBGL).drop(gotFile).dragOver(highlight).dragLeave(redraw);
+
+        img = loadImage("source/Seeing.PNG");
+        }
+        
+        function draw() {
+        background('#edeaec');
+        translate(0, 0, 0);
+        push();
+        rotateZ(theta * mouseX * 0.001);
+        rotateX(theta * mouseX * 0.001);
+        rotateY(theta * mouseX * 0.001);
+        //pass image as texture
+        texture(img);
+        sphere(150);
+        pop();
+        noStroke();
+        
+        theta += 0.005;
+        
+        }
+
+        function gotFile(f) {
+        if (f.type === 'image') img = loadImage(f.data, redraw);
+        }
+
+        function highlight(evt) {
+        evt.preventDefault();
+        }
+    </script>
+</body>
+</html>
