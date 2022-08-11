@@ -1,0 +1,43 @@
+*{
+	font-family: aktiv-grotesk, sans-serif;
+	font-style: normal;
+	font-weight: 500;
+}
+
+body {
+	margin: 0;
+}
+#three-canvas {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+canvas{
+	cursor: none;
+}
+.cursor{
+	width: 10vmin; 
+	height: 10vmin; 
+	background-color: #fff; 
+	mix-blend-mode: difference;
+	border-radius: 100%; 
+	position: absolute; left: 0; top: 0; 
+	z-index: 999; 
+  }
+
+  .myfooter {
+	font-size: 5rem;
+    padding: 15px;
+    text-align: center;
+	background-color: black;
+	color: white;
+}
+
+  p{
+	  font-size: 5rem;
+  }
+
+  .mybotton{
+	font-size: 5rem;
+	background-color: black;
+}
