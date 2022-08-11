@@ -22,14 +22,14 @@
         
         function draw() {
         background('#edeaec');
-        translate(0, 0, 0);
+        // translate(0,-10, 0);
         push();
-        rotateZ(theta * mouseX * 0.001);
-        rotateX(theta * mouseX * 0.001);
-        rotateY(theta * mouseX * 0.001);
+        rotateZ(theta * mouseX * 0.005);
+        rotateX(theta * mouseX * 0.0025);
+        rotateY(theta * mouseX * 0.0005);
         //pass image as texture
         texture(img);
-        sphere(150);
+        sphere(200, 70, 70);
         pop();
         noStroke();
         
