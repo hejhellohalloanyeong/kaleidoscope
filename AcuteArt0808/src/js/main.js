@@ -77,7 +77,12 @@ import { PreventDragClick } from './PreventDragClick.js';
 					texture15,
 					texture16
 	]
+
+
 	var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
+
+
+	
 // infoDateTextrue.wrapS = infoDateTextrue.wrapT = THREE.RepeatWrapping;
 
 
@@ -166,18 +171,29 @@ import { PreventDragClick } from './PreventDragClick.js';
 
 	// [ Spheres ]
 	const sphereGeometry = new THREE.SphereGeometry(12, 32, 32);
-	const sphereMaterial = new THREE.MeshBasicMaterial({
-		side: DoubleSide
-	});
+	let sphereMaterial;
 
 	const spheres = [];
 	let sphere;
 	for (let i = 0; i < 16; i++) {
+
+	
+		var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
+
+
+
+		console.log(randTexture);
+
+		sphereMaterial = new THREE.MeshBasicMaterial({
+			side: DoubleSide,
+			map: randTexture
+		});
+		
+
 		sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 		sphere.position.x = (Math.random() - 0.5) * 130;
 		sphere.position.y = (Math.random() - 0.5) * 130;
 		sphere.position.z = (Math.random() - 0.5) * 130;
-		sphere.material.map = randTexture;
 
 		scene.add(sphere);
 		spheres.push(sphere);
