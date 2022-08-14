@@ -5,7 +5,6 @@ import { PreventDragClick } from './PreventDragClick.js';
 
 // ----- 메모: 배경 컬러값: #f0efeb / R:240 G:239 B:235
 
-
 	// Texture Load
 	const loadingManager = new THREE.LoadingManager();
 	loadingManager.onStart = () => {
@@ -122,7 +121,7 @@ import { PreventDragClick } from './PreventDragClick.js';
 		0.1,
 		1000
 	);
-	camera.position.set(100, 100, 70); //desktop
+	camera.position.set(100, 100, 20); //desktop
 	// camera.position.set(100, 100, 250); //mobile
 	scene.add(camera);
 
@@ -188,59 +187,8 @@ import { PreventDragClick } from './PreventDragClick.js';
 	const infoOrg = new THREE.Mesh(infoOrgGeometry, infoOrgMaterial);
 
 
-	// [ Artworks - Horizontal ]
-	const artworkHorGeometry = new THREE.PlaneGeometry(30, 13.5);
-	const artworkHorMaterial = new THREE.MeshBasicMaterial({
-		// map: videoTextures,
-		// map: randTexture,
-		side: DoubleSide
-	});
-	const artworksHor = [];
-	let artworkHor;
-	for (let i = 0; i < 4; i++) {
-		artworkHor = new THREE.Mesh(artworkHorGeometry, artworkHorMaterial);
-		artworkHor.position.x = (Math.random() - 0.5) * 100;
-		artworkHor.position.y = 6.75;
-		artworkHor.position.z = (Math.random() - 0.5) * 150;
-		artworkHor.rotation.y = (Math.random() - 0.5) * 100;
-		artworkHor.material.map = texturesListHor[0];
-		scene.add(artworkHor);
-		artworksHor.push(artworkHor);
-	}
-
-		// [ Artworks - Vertical ]
-		const artworkVerGeometry = new THREE.PlaneGeometry(13.5, 30);
-		let artworkVerMaterial;
-		let artworkVerMesh;
-		for (let i = 0; i < 12; i++) {
-
-			var randTextureVer = texturesListVer[Math.floor(Math.random() * texturesListVer.length)];
-
-			artworkVerMaterial = new THREE.MeshStandardMaterial({
-				map: randTextureVer,
-				side: DoubleSide
-				// color: `rgb(
-				// 	${ 50 + Math.floor(Math.random() * 205) },
-				// 	${ 50 + Math.floor(Math.random() * 205) },
-				// 	${ 50 + Math.floor(Math.random() * 205) }
-				// )`
-			});
-
-			// artworkVer.material.map = texturesListVer[0];
-
-			artworkVerMesh = new THREE.Mesh(artworkVerGeometry, artworkVerMaterial);
-			artworkVerMesh.position.x = (Math.random() - 0.5) * 100;
-			artworkVerMesh.position.y = 15;
-			artworkVerMesh.position.z = (Math.random() - 0.5) * 150;
-			artworkVerMesh.rotation.y = (Math.random() - 0.5) * 100;
-			
-			scene.add(artworkVerMesh);
-		}
-	
-
-
 	// [ Spheres ]
-	const sphereGeometry = new THREE.SphereGeometry(13, 32, 32);
+	const sphereGeometry = new THREE.SphereGeometry(8, 32, 32);
 	const sphereMaterial = new THREE.MeshBasicMaterial({
 		envMap: textureCube, 
 		refractionRatio: 0.8,
@@ -248,10 +196,10 @@ import { PreventDragClick } from './PreventDragClick.js';
 	});
 	const spheres = [];
 	let sphere;
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < 16; i++) {
 		sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 		sphere.position.x = (Math.random() - 0.5) * 130;
-		sphere.position.y = 13;
+		sphere.position.y = 4;
 		sphere.position.z = (Math.random() - 0.5) * 130;
 		sphere.rotation.y = (Math.random() - 0.5) * 100;
 		scene.add(sphere);
@@ -280,12 +228,31 @@ import { PreventDragClick } from './PreventDragClick.js';
 	function draw() {
 		const delta = clock.getDelta();
         const time = clock.getElapsedTime();
+		const timer = 0.0001 * Date.now();
+
 
 		bgSphere.rotation.y =  time * 0.1;
 
-		artworksHor.forEach(item =>{
-			item.rotation.y += Math.cos(time) * 0.01;
-		});
+		// spheres[0].position.x += Math.cos(time) * 0.1;
+
+		for ( let i = 0, il = spheres.length; i < il; i ++ ) {
+
+					const sphere = spheres[ i ];
+
+					sphere.position.x = 50 * Math.cos( timer + i );
+					sphere.position.y = 4 + (50 * Math.sin( timer + i * 1.1 ));
+					sphere.position.z = 50 * Math.cos( timer + i );
+
+				}
+
+
+
+		open.addEventListener('click', () => {
+			anim.play();
+			camera.position.set(100, 100, 50); //desktop
+			
+		})
+
 
 	
 		controls.update();
