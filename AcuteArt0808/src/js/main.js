@@ -28,7 +28,7 @@ import { PreventDragClick } from './PreventDragClick.js';
 	const infoOrgTexture = textureLoader.load(
 		'./img/infoOrg.png');
 	const texture01 = textureLoader.load(
-		'./img/Poster.jpg');
+		'./img/testimg.png');
 
 	const textureCube = new THREE.CubeTextureLoader()
 	.setPath( 'textures/cubemap/' )
@@ -190,8 +190,9 @@ import { PreventDragClick } from './PreventDragClick.js';
 	// [ Spheres ]
 	const sphereGeometry = new THREE.SphereGeometry(8, 32, 32);
 	const sphereMaterial = new THREE.MeshBasicMaterial({
-		envMap: textureCube, 
-		refractionRatio: 0.8,
+		// envMap: textureCube, 
+		// refractionRatio: 0.8,
+		map: texture01,
 		side: DoubleSide
 	});
 	const spheres = [];
@@ -272,12 +273,6 @@ import { PreventDragClick } from './PreventDragClick.js';
 
 	// 이벤트
 	window.addEventListener('resize', setSize);
-
-	const cursor = document.querySelector('.cursor');
-	canvas.addEventListener('mousemove',(e) => {
-	  cursor.style.left = `${e.clientX}px`;
-	  cursor.style.top = `${e.clientY}px`;
-	});
 
 
 	const preventDragClick = new PreventDragClick(canvas);

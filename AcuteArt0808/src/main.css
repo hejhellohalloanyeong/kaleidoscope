@@ -58,19 +58,3 @@ body {
     left: 0;
     top: 0;
 }
-
-canvas {
-    cursor: none;
-}
-
-.cursor {
-    width: 10vmin;
-    height: 10vmin;
-    background-color: #fff;
-    mix-blend-mode: difference;
-    border-radius: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 999;
-}
