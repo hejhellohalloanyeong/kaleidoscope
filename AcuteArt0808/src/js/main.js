@@ -148,7 +148,7 @@ import { PreventDragClick } from './PreventDragClick.js';
 
 
 //Geometry
-	const circleGeometry = new THREE.CircleGeometry(100, 132);
+	// const circleGeometry = new THREE.CircleGeometry(100, 132);
 	const bgSphereGeometry  = new THREE.SphereGeometry(100, 132, 132);
 	const infoDateGeometry = new THREE.PlaneGeometry(135, 45);
 	const infoArtistGeometry = new THREE.PlaneGeometry(110, 100);
@@ -156,9 +156,9 @@ import { PreventDragClick } from './PreventDragClick.js';
 
 
 //Material
-	const circleMaterial = new THREE.MeshStandardMaterial({
-		color: '#f0efeb'
-	});
+	// const circleMaterial = new THREE.MeshStandardMaterial({
+	// 	color: '#f0efeb'
+	// });
 	const bgSphereMaterial = new THREE.MeshBasicMaterial({
 		map: texture01,
 		side: DoubleSide,
@@ -180,7 +180,7 @@ import { PreventDragClick } from './PreventDragClick.js';
 	});
 
 // Mesh
-	const circle = new THREE.Mesh(circleGeometry, circleMaterial);
+	// const circle = new THREE.Mesh(circleGeometry, circleMaterial);
 	const bgSphere = new THREE.Mesh(bgSphereGeometry, bgSphereMaterial);
 	const infoDate = new THREE.Mesh(infoDateGeometry, infoDateMaterial);
 	const infoArtist = new THREE.Mesh(infoArtistGeometry, infoArtistMaterial);
@@ -188,7 +188,7 @@ import { PreventDragClick } from './PreventDragClick.js';
 
 
 	// [ Spheres ]
-	const sphereGeometry = new THREE.SphereGeometry(8, 32, 32);
+	const sphereGeometry = new THREE.SphereGeometry(12, 32, 32);
 	const sphereMaterial = new THREE.MeshBasicMaterial({
 		// envMap: textureCube, 
 		// refractionRatio: 0.8,
@@ -200,16 +200,22 @@ import { PreventDragClick } from './PreventDragClick.js';
 	for (let i = 0; i < 16; i++) {
 		sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 		sphere.position.x = (Math.random() - 0.5) * 130;
-		sphere.position.y = 4;
+		sphere.position.y = (Math.random() - 0.5) * 130;
 		sphere.position.z = (Math.random() - 0.5) * 130;
-		sphere.rotation.y = (Math.random() - 0.5) * 100;
+
+
+
+		// sphere.position.x = Math.random() * 50 - 5;
+		// sphere.position.y = Math.random() * 50 - 5;
+		// sphere.position.z = Math.random() * 50 - 5;
+		// sphere.rotation.y = (Math.random() - 0.5) * 100;
 		scene.add(sphere);
 		spheres.push(sphere);
 	}
 
 
-	circle.rotation.x = - Math.PI * 0.5;
-	circle.position.set(0, 0, 0);
+	// circle.rotation.x = - Math.PI * 0.5;
+	// circle.position.set(0, 0, 0);
 	bgSphere.rotation.x = -Math.PI * 0.5;
 	infoDate.position.set(0, 20, -60);
 	infoDate.rotation.set(0, 0, 0);
@@ -219,7 +225,7 @@ import { PreventDragClick } from './PreventDragClick.js';
 	bgSphere.position.set(0, 0, 0);
 	
 
-	scene.add(circle, bgSphere, infoDate, infoArtist, infoOrg);
+	scene.add(bgSphere, infoDate, infoArtist, infoOrg);
 
 
 	
@@ -229,23 +235,23 @@ import { PreventDragClick } from './PreventDragClick.js';
 	function draw() {
 		const delta = clock.getDelta();
         const time = clock.getElapsedTime();
-		const timer = 0.0001 * Date.now();
+		const timer = 0.1 * Date.now();
 
 
 		bgSphere.rotation.y =  time * 0.1;
 
 		// spheres[0].position.x += Math.cos(time) * 0.1;
 
-		for ( let i = 0, il = spheres.length; i < il; i ++ ) {
+		// for ( let i = 0, il = spheres.length; i < il; i ++ ) {
 
-					const sphere = spheres[ i ];
+		// 			const sphere = spheres[ i ];
+		// 			// ( Math.random() * 100 )
+		// 			sphere.position.x = ( Math.random() * 50 ) * Math.cos( timer + i );
+		// 			// sphere.position.y = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
+		// 			// sphere.position.z = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
 
-					sphere.position.x = 50 * Math.cos( timer + i );
-					sphere.position.y = 4 + (50 * Math.sin( timer + i * 1.1 ));
-					sphere.position.z = 50 * Math.cos( timer + i );
 
-				}
-
+		// 		}
 
 
 		open.addEventListener('click', () => {
@@ -261,6 +267,10 @@ import { PreventDragClick } from './PreventDragClick.js';
 		renderer.render(scene, camera);
 		renderer.setAnimationLoop(draw);
 	}
+	
+	
+	console.log(sphere.position.x, sphere.position.y ,sphere.position.z );
+	
 
 	function setSize() {
 		camera.aspect = window.innerWidth / window.innerHeight;
