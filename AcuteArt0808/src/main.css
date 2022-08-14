@@ -24,7 +24,7 @@ body {
     overflow: hidden;
     transform: translate3d(0, 0, 0);
     text-align: center;
-    opacity: 0.1;
+    opacity: 1.0;
     z-index: 9999;
 }
 

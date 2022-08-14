@@ -235,23 +235,34 @@ import { PreventDragClick } from './PreventDragClick.js';
 	function draw() {
 		const delta = clock.getDelta();
         const time = clock.getElapsedTime();
-		const timer = 0.1 * Date.now();
+		const timer = 0.0001 * Date.now();
 
 
-		bgSphere.rotation.y =  time * 0.1;
+		bgSphere.rotation.y =  time * 0.3;
 
-		// spheres[0].position.x += Math.cos(time) * 0.1;
+		spheres[0].rotation.x = time * 2.3;
+		spheres[1].rotation.y = time * 2.5;
+		spheres[2].rotation.z = time * 2.4;
+		// spheres[0].position.y = 60 * (Math.cos( 5 * timer + 1 ));
 
-		// for ( let i = 0, il = spheres.length; i < il; i ++ ) {
+		// spheres[1].position.y = 60 * (Math.cos( 15 * timer + 1 ));
 
-		// 			const sphere = spheres[ i ];
-		// 			// ( Math.random() * 100 )
-		// 			sphere.position.x = ( Math.random() * 50 ) * Math.cos( timer + i );
-		// 			// sphere.position.y = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
-		// 			// sphere.position.z = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
+		for ( let i = 0, il = spheres.length; i < il; i ++ ) {
+
+					const sphere = spheres[ i ];
+					// ( Math.random() * 100 )
+					
+					sphere.position.x = 50 * (Math.cos( 1 * timer + i ));
+					sphere.position.y = 50 * (Math.sin( 2 * timer + i ));
+					// sphere.position.z = 10 * (Math.cos( 10 * timer + i ));
+					// sphere.position.z = 30 * (Math.cos( 10 * timer + i ));
 
 
-		// 		}
+					// sphere.position.y = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
+					// sphere.position.z = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
+
+
+				}
 
 
 		open.addEventListener('click', () => {
