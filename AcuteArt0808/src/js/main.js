@@ -28,75 +28,57 @@ import { PreventDragClick } from './PreventDragClick.js';
 	const infoOrgTexture = textureLoader.load(
 		'./img/infoOrg.png');
 	const texture01 = textureLoader.load(
-		'./img/testimg.png');
+		'./textures/artworks/01ADensityNew.png');
+	const texture02 = textureLoader.load(
+		'./textures/artworks/02AllAtAnyTime.png');
+	const texture03 = textureLoader.load(
+		'./textures/artworks/03GiantDOKU.png');
+	const texture04 = textureLoader.load(
+		'./textures/artworks/04HolidaySpace.png');
+	const texture05 = textureLoader.load(
+		'./textures/artworks/05ImaginaryFriend.png');
+	const texture06 = textureLoader.load(
+		'./textures/artworks/06Language.png');
+	const texture07 = textureLoader.load(
+		'./textures/artworks/07LightBulbManDressedAsLesSapeurs.png');
+	const texture08 = textureLoader.load(
+		'./textures/artworks/08LOVE.png');
+	const texture09 = textureLoader.load(
+		'./textures/artworks/09Lune.png');
+	const texture10 = textureLoader.load(
+		'./textures/artworks/10MaratusSpecious.png');
+	const texture11 = textureLoader.load(
+		'./textures/artworks/11RMBCity.png');
+	const texture12 = textureLoader.load(
+		'./textures/artworks/12TheFourTemperaments.png');
+	const texture13 = textureLoader.load(
+		'./textures/artworks/13UltraLightBeamsofLove.png');
+	const texture14 = textureLoader.load(
+		'./textures/artworks/14WillingToBeVulnerable.png');
+	const texture15 = textureLoader.load(
+		'./textures/artworks/15Worm.png');
+	const texture16 = textureLoader.load(
+		'./textures/artworks/16WunderkammerCluster.png');
 
-	const textureCube = new THREE.CubeTextureLoader()
-	.setPath( 'textures/cubemap/' )
-	.load( [ 'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png' ] );
-	textureCube.mapping = THREE.CubeRefractionMapping;
-	
-// videoTexture	
-	const video01 = document.getElementById( 'video01_ADensityNew' );
-	const video02 = document.getElementById( 'video02_AllAtAnyTime' );
-	const video03 = document.getElementById( 'video03_GiantDOKU' );
-	const video04 = document.getElementById( 'video04_HolidaySpace' );
-	const video05 = document.getElementById( 'video05_ImaginaryFriend' );
-	const video06 = document.getElementById( 'video06_Language' );
-
-	video01.onloadeddata = function () {video01.play()};
-	video02.onloadeddata = function () {video02.play()};
-	video03.onloadeddata = function () {video03.play()};
-	video04.onloadeddata = function () {video04.play()};
-	video05.onloadeddata = function () {video05.play()};
-	video06.onloadeddata = function () {video06.play()};
-
-	const video01Texture = new THREE.VideoTexture( video01 );
-	const video02Texture = new THREE.VideoTexture( video02 );
-	const video03Texture = new THREE.VideoTexture( video03 );
-	const video04Texture = new THREE.VideoTexture( video04 );
-	const video05Texture = new THREE.VideoTexture( video05 );
-	const video06Texture = new THREE.VideoTexture( video06 );
-	
-	video01Texture.needsUpdate = true;
-	video02Texture.needsUpdate = true;
-	video03Texture.needsUpdate = true;
-	video04Texture.needsUpdate = true;
-	video05Texture.needsUpdate = true;
-	video06Texture.needsUpdate = true;
-
-	video01Texture.name = 'video_01';
-	video02Texture.name = 'video_02';
-	video03Texture.name = 'video_03';
-	video04Texture.name = 'video_04';
-	video05Texture.name = 'video_05';
-	video06Texture.name = 'video_06';
-
-	video01Texture.wrapS = video01Texture.wrapT = THREE.ClampToEdgeWrapping;
-	video02Texture.wrapS = video02Texture.wrapT = THREE.ClampToEdgeWrapping;
-	video03Texture.wrapS = video03Texture.wrapT = THREE.ClampToEdgeWrapping;
-	video04Texture.wrapS = video04Texture.wrapT = THREE.ClampToEdgeWrapping;
-	video05Texture.wrapS = video05Texture.wrapT = THREE.ClampToEdgeWrapping;
-	video06Texture.wrapS = video06Texture.wrapT = THREE.ClampToEdgeWrapping;
-
+	var artworkTextures = [texture01, 
+					texture02, 
+					texture03, 
+					texture04, 
+					texture05,
+					texture06, 
+					texture07, 
+					texture08, 
+					texture09, 
+					texture10,
+					texture11, 
+					texture12, 
+					texture13, 
+					texture14, 
+					texture15,
+					texture16
+	]
+	var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
 // infoDateTextrue.wrapS = infoDateTextrue.wrapT = THREE.RepeatWrapping;
-
-
-	var texturesListHor = [
-		video01Texture, 
-		video02Texture];
-		
-	var texturesListVer = [
-		video03Texture, 
-		video04Texture, 
-		video05Texture,
-		video06Texture];
-
-
-	// var randTextureHor = texturesListHor[Math.floor(Math.random() * texturesListHor.length)];
-	// var randTextureVer = texturesListVer[Math.floor(Math.random() * texturesListVer.length)];
-
-	// console.log(randTextureHor.name + ' 랜덤 로드');	
-	// console.log(randTextureVer.name + ' 랜덤 로드');	
 
 
 
@@ -135,16 +117,11 @@ import { PreventDragClick } from './PreventDragClick.js';
 	scene.add( pointLight );
 	
 
-
-	 
-
 	// Controls
 	const controls = new OrbitControls(camera, renderer.domElement);
 	controls.maxPolarAngle = Math.PI / 2;
 	controls.enableDamping = true;
 	controls.maxDistance = 200;
-
-
 
 
 //Geometry
@@ -160,7 +137,7 @@ import { PreventDragClick } from './PreventDragClick.js';
 	// 	color: '#f0efeb'
 	// });
 	const bgSphereMaterial = new THREE.MeshBasicMaterial({
-		map: texture01,
+		map: randTexture,
 		side: DoubleSide,
 	})
 	const infoDateMaterial = new THREE.MeshBasicMaterial({
@@ -190,11 +167,9 @@ import { PreventDragClick } from './PreventDragClick.js';
 	// [ Spheres ]
 	const sphereGeometry = new THREE.SphereGeometry(12, 32, 32);
 	const sphereMaterial = new THREE.MeshBasicMaterial({
-		// envMap: textureCube, 
-		// refractionRatio: 0.8,
-		map: texture01,
 		side: DoubleSide
 	});
+
 	const spheres = [];
 	let sphere;
 	for (let i = 0; i < 16; i++) {
@@ -202,13 +177,8 @@ import { PreventDragClick } from './PreventDragClick.js';
 		sphere.position.x = (Math.random() - 0.5) * 130;
 		sphere.position.y = (Math.random() - 0.5) * 130;
 		sphere.position.z = (Math.random() - 0.5) * 130;
+		sphere.material.map = randTexture;
 
-
-
-		// sphere.position.x = Math.random() * 50 - 5;
-		// sphere.position.y = Math.random() * 50 - 5;
-		// sphere.position.z = Math.random() * 50 - 5;
-		// sphere.rotation.y = (Math.random() - 0.5) * 100;
 		scene.add(sphere);
 		spheres.push(sphere);
 	}
@@ -240,9 +210,25 @@ import { PreventDragClick } from './PreventDragClick.js';
 
 		bgSphere.rotation.y =  time * 0.3;
 
-		spheres[0].rotation.x = time * 2.3;
-		spheres[1].rotation.y = time * 2.5;
-		spheres[2].rotation.z = time * 2.4;
+		spheres[0].rotation.x = time * 1.3;
+		spheres[1].rotation.y = time * 1.5;
+		spheres[2].rotation.z = time * 1.7;
+		spheres[3].rotation.x = time * 1.9;
+		spheres[4].rotation.y = time * 1.1;
+		spheres[5].rotation.z = time * 1.4;
+		spheres[6].rotation.x = time * 1.3;
+		spheres[7].rotation.y = time * 0.5;
+		spheres[8].rotation.z = time * 0.4;
+		spheres[9].rotation.x = time * 1.3;
+		spheres[10].rotation.z = time * 0.5;
+		spheres[11].rotation.z = time * 0.4;
+		spheres[12].rotation.y = time * 1.1;
+		spheres[13].rotation.x = time * 0.9;
+		spheres[14].rotation.y = time * 0.1;
+		spheres[15].rotation.z = time * 0.3;
+		
+
+
 		// spheres[0].position.y = 60 * (Math.cos( 5 * timer + 1 ));
 
 		// spheres[1].position.y = 60 * (Math.cos( 15 * timer + 1 ));
