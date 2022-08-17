@@ -5,8 +5,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Acute Art</title>
 	<link rel="icon" type="image/x-icon" href="./img/favicon.png">
+	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 	<link rel="stylesheet" href="./main.css?v=0.1">
 	<script src="./js/lottie.min.js"></script>
 </head>
@@ -19,7 +20,7 @@
 	<script src="js/main.js" type="module"></script>
 
 	<!-- INTRO / Lottie JS  -->
-	<!-- <img id="currentPhoto" src="./data/1.jpg"> -->
+
 	<div class="container">
 		<div id="lottie" class="open"></div>
 	</div>
@@ -43,20 +44,29 @@
 			loop: false,
 			autoplay: false
 		})
-
-		// open.addEventListener('click', () => {
-		// 	anim.play();
-			
-		// })
 	</script>
 
 
+	<div class="modal">
+		<div id="wrap" class="info">
+			<a href="#"><i class="uil uil-question-circle"></i></a>
+		</div>
+		<div id="popup" class="info">
+			<ul class="seperate">
+				<li class="text">구를 당겨 눈 안으로 들어가 보세요!</li>
+				<li class="text">작은 안구를 클릭하여 가상의 전시를 즐겨 보세요!</li>
+			</ul>
+			<a href="#" class="close"><i class="uil uil-times"></i></a>
+
+		</div>
+	</div>
 
 
-
-
-
-
+	<script>
+		$("a").click(function () {
+			$("#popup").fadeToggle("slow");
+		});
+	</script>
 
 	<!-- MAIN / THREE JS -->
 

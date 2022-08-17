@@ -5,6 +5,7 @@
 }
 
 body {
+    overflow: hidden;
     margin: 0;
 }
 
@@ -30,7 +31,7 @@ body {
 
 .container {
     padding-top: 40px;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     margin: auto;
     display: flex;
@@ -44,10 +45,80 @@ body {
     }
 }
 
+@media only screen and (min-width: 1100px) {
+    .container {
+        padding-top: 90px;
+    }
+}
+
 @media only screen and (min-width: 1400px) {
     .container {
         padding-top: 110px;
     }
+}
+
+/* Information Modal */
+
+#wrap {
+    padding-bottom: 10px;
+
+}
+
+.info {
+    font-size: 1.2rem;
+    position: relative;
+    left: 2vw;
+    top: 2vw;
+}
+
+.text {
+    padding-top: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a.close {
+    font-size: 1.2rem;
+    right: 10px;
+    top: 10px;
+    color: black;
+    position: absolute;
+}
+
+#popup {
+    word-break: keep-all;
+    color: black;
+    background: #fff;
+    width: 20rem;
+    padding: 3px;
+    padding-left: -13px;
+    padding-right: 40px;
+    border-radius: 25px;
+    
+}
+
+.expand {
+    font-size: 1.2rem;
+}
+
+.seperate {
+    padding-left: 40px;
+    list-style-type: decimal;
+}
+
+i.uil-question-circle {
+    font-size: 3rem;
+}
+
+i.uil-times {
+    font-size: 1.5rem;
+}
+
+.modal {
+    overflow-y: visible !important;
 }
 
 
@@ -57,4 +128,5 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+    cursor: grab;
 }
