@@ -34,6 +34,10 @@ const infoArtistTextrue = textureLoader.load(
 	'./img/infoArtist.png');
 const infoOrgTexture = textureLoader.load(
 	'./img/infoOrg.png');
+const infoTitleTexture = textureLoader.load(
+	'./img/infoTitle.png');
+
+
 const texture01 = textureLoader.load(
 	'./textures/artworks/01ADensityNew.png');
 const texture02 = textureLoader.load(
@@ -153,9 +157,10 @@ scene.add(posterSphere);
 //Geometry
 // const circleGeometry = new THREE.CircleGeometry(100, 132);
 const bgSphereGeometry = new THREE.SphereGeometry(100, 132, 132);
-const infoDateGeometry = new THREE.PlaneGeometry(135, 45);
-const infoArtistGeometry = new THREE.PlaneGeometry(110, 100);
-const infoOrgGeometry = new THREE.PlaneGeometry(140, 20);
+const infoDateGeometry = new THREE.PlaneGeometry(78, 26);
+const infoArtistGeometry = new THREE.PlaneGeometry(112.5, 100);
+const infoOrgGeometry = new THREE.PlaneGeometry(120, 10);
+const infoTitleGeometry = new THREE.PlaneGeometry(50, 12.5);
 
 
 //Material
@@ -181,6 +186,11 @@ const infoOrgMaterial = new THREE.MeshBasicMaterial({
 	transparent: true,
 	side: DoubleSide
 });
+const infoTitleMaterial = new THREE.MeshBasicMaterial({
+	map: infoTitleTexture,
+	transparent: true,
+	side: DoubleSide
+});
 
 // Mesh
 // const circle = new THREE.Mesh(circleGeometry, circleMaterial);
@@ -188,6 +198,7 @@ const bgSphere = new THREE.Mesh(bgSphereGeometry, bgSphereMaterial);
 const infoDate = new THREE.Mesh(infoDateGeometry, infoDateMaterial);
 const infoArtist = new THREE.Mesh(infoArtistGeometry, infoArtistMaterial);
 const infoOrg = new THREE.Mesh(infoOrgGeometry, infoOrgMaterial);
+const infoTitle = new THREE.Mesh(infoTitleGeometry, infoTitleMaterial);
 
 
 // [ Spheres ]
@@ -200,8 +211,6 @@ for (let i = 0; i < 16; i++) {
 
 
 	var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
-
-
 
 	console.log(randTexture);
 
@@ -225,15 +234,15 @@ for (let i = 0; i < 16; i++) {
 // circle.position.set(0, 0, 0);
 bgSphere.rotation.x = -Math.PI * 0.5;
 bgSphere.position.set(0, 0, 0);
-infoDate.position.set(0, 20, -60);
-infoDate.rotation.set(0, 0, 0);
+infoDate.position.set(-12, 15, -70);
 infoArtist.rotation.x = -Math.PI * 0.5;
-infoArtist.position.set(0, 0.5, 0);
-infoOrg.position.set(0, 10, 60);
+infoArtist.position.set(0, 0, -10);
+infoOrg.position.set(0, 10, 50);
+infoTitle.position.set(-25, 45, -70);
 
 
 
-scene.add(bgSphere, infoDate, infoArtist, infoOrg);
+scene.add(bgSphere, infoDate, infoArtist, infoOrg, infoTitle);
 
 
 
@@ -338,13 +347,16 @@ function checkIntersects() {
 	// }
 
 	for (const item of intersects) {
+		item.object.name = 'clicked';
 		console.log(item.object.name);
 		console.log(bgSphere.material.map);
 		
 		bgSphere.material.map = item.object.material.map;
 
-	
-		item.object.material.color.set('black');
+
+		// item.object.material.color.set('#474747');
+		
+
 
 		// scene.background = newColor;
 		console.log(scene.background);
