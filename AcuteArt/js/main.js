@@ -191,7 +191,7 @@ const infoOrg = new THREE.Mesh(infoOrgGeometry, infoOrgMaterial);
 
 
 // [ Spheres ]
-const sphereGeometry = new THREE.SphereGeometry(12, 32, 32);
+const sphereGeometry = new THREE.SphereGeometry(12, 64, 64);
 let sphereMaterial;
 
 const spheres = [];
