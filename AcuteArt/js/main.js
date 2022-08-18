@@ -136,6 +136,20 @@ controls.enableDamping = true;
 controls.maxDistance = 200;
 
 
+// posterSphere 포스터 텍스쳐 구
+
+const posterTexture = textureLoader.load(
+	'./img/poster.jpg');
+const posterSphereMaterial = new THREE.MeshBasicMaterial({
+map: posterTexture
+})
+const posterSphereGeometry = new THREE.SphereGeometry(101, 132, 132);
+const posterSphere = new THREE.Mesh(posterSphereGeometry, posterSphereMaterial);
+posterSphere.position.set(0, 0, 0);
+posterSphere.rotation.x = -Math.PI * 0.5;
+scene.add(posterSphere);
+
+
 //Geometry
 // const circleGeometry = new THREE.CircleGeometry(100, 132);
 const bgSphereGeometry = new THREE.SphereGeometry(100, 132, 132);
@@ -149,7 +163,7 @@ const infoOrgGeometry = new THREE.PlaneGeometry(140, 20);
 // 	color: '#f0efeb'
 // });
 const bgSphereMaterial = new THREE.MeshBasicMaterial({
-	map: randTexture,
+	map: posterTexture,
 	side: DoubleSide,
 })
 const infoDateMaterial = new THREE.MeshBasicMaterial({
@@ -210,12 +224,13 @@ for (let i = 0; i < 16; i++) {
 // circle.rotation.x = - Math.PI * 0.5;
 // circle.position.set(0, 0, 0);
 bgSphere.rotation.x = -Math.PI * 0.5;
+bgSphere.position.set(0, 0, 0);
 infoDate.position.set(0, 20, -60);
 infoDate.rotation.set(0, 0, 0);
 infoArtist.rotation.x = -Math.PI * 0.5;
 infoArtist.position.set(0, 0.5, 0);
 infoOrg.position.set(0, 10, 60);
-bgSphere.position.set(0, 0, 0);
+
 
 
 scene.add(bgSphere, infoDate, infoArtist, infoOrg);
@@ -232,6 +247,7 @@ function draw() {
 
 
 	bgSphere.rotation.y = time * 0.3;
+	posterSphere.rotation.y = time * 0.3;
 
 	spheres[0].rotation.x = time * 1.3;
 	spheres[1].rotation.y = time * 1.5;
@@ -251,24 +267,13 @@ function draw() {
 	spheres[15].rotation.z = time * 0.3;
 
 
-
-	// spheres[0].position.y = 60 * (Math.cos( 5 * timer + 1 ));
-
-	// spheres[1].position.y = 60 * (Math.cos( 15 * timer + 1 ));
-
 	for (let i = 0, il = spheres.length; i < il; i++) {
 
 		const sphere = spheres[i];
-		// ( Math.random() * 100 )
 
 		sphere.position.x = 50 * (Math.cos(1 * timer + i));
 		sphere.position.y = 50 * (Math.sin(2 * timer + i));
-		// sphere.position.z = 10 * (Math.cos( 10 * timer + i ));
-		// sphere.position.z = 30 * (Math.cos( 10 * timer + i ));
-
-
-		// sphere.position.y = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
-		// sphere.position.z = ( Math.random() * 50 ) * Math.sin( timer + i * 1.1 );
+	
 
 
 	}
@@ -303,10 +308,52 @@ function setSize() {
 
 // 이벤트
 window.addEventListener('resize', setSize);
-
-
 const preventDragClick = new PreventDragClick(canvas);
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+var meshes = spheres;
 
+
+canvas.addEventListener('click', e => {
+	mouse.x = e.clientX / canvas.clientWidth * 2 - 1;
+	mouse.y = -(e.clientY / canvas.clientHeight * 2 - 1);
+	// console.log(mouse);
+	checkIntersects();
+});
+
+
+
+function checkIntersects() {
+	console.log(preventDragClick.mouseMoved);
+	if (preventDragClick.mouseMoved) return;
+
+	raycaster.setFromCamera(mouse, camera);
+
+	const intersects = raycaster.intersectObjects(meshes);
+
+	// if(intersects.length > 0) {
+	// 	document.body.style.cursor = 'pointer';
+	// } else {
+	// 	document.body.style.cursor = 'default'
+	// }
+
+	for (const item of intersects) {
+		console.log(item.object.name);
+		console.log(bgSphere.material.map);
+		
+		bgSphere.material.map = item.object.material.map;
+
+	
+		item.object.material.color.set('black');
+
+		// scene.background = newColor;
+		console.log(scene.background);
+		break;
+	}
+	// if (intersects[0]) {
+	// 	intersects[0].object.material.color.set('blue');
+	// }
+}
 
 
 draw();
