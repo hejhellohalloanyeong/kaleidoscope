@@ -121,9 +121,20 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	1000
 );
-camera.position.set(100, 100, 20); //desktop
-// camera.position.set(100, 100, 250); //mobile
-scene.add(camera);
+
+
+
+// camera.position.set(100, 100, 50); //desktop
+// // camera.position.set(100, 100, 250); //mobile
+// scene.add(camera);
+
+
+
+
+
+
+
+
 
 // Light
 
@@ -139,7 +150,7 @@ scene.add(pointLight);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI / 2;
 controls.enableDamping = true;
-controls.maxDistance = 200;
+controls.maxDistance = 300;
 controls.enablePan = false;
 controls.update();
 
@@ -214,7 +225,7 @@ for (let i = 0; i < 16; i++) {
 
 	var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
 
-	console.log(randTexture);
+	// console.log(randTexture);
 
 	sphereMaterial = new THREE.MeshBasicMaterial({
 		side: DoubleSide,
@@ -238,7 +249,7 @@ bgSphere.rotation.x = -Math.PI * 0.5;
 bgSphere.position.set(0, 0, 0);
 infoDate.position.set(-12, 15, -70);
 infoArtist.rotation.x = -Math.PI * 0.5;
-infoArtist.position.set(0.5, 0, -10);
+infoArtist.position.set(0.7, 0, -10);
 infoOrg.position.set(0, 10, 50);
 infoTitle.position.set(-25, 45, -70);
 
@@ -292,7 +303,18 @@ function draw() {
 
 	open.addEventListener('click', () => {
 		anim.play();
-		camera.position.set(100, 100, 50); //desktop
+		camera.aspect = window.innerWidth / window.innerHeight;
+
+			if (camera.aspect < 1){
+				console.log('모바일 창 로드');
+				camera.position.set(100, 100, 300); 
+				scene.add(camera);
+			}else{
+				console.log('데스크톱 창 로드');
+				camera.position.set(100, 100, 50); 
+				scene.add(camera);
+			}
+		// camera.position.set(100, 100, 500); //desktop
 
 	})
 
@@ -305,16 +327,26 @@ function draw() {
 }
 
 
-console.log(sphere.position.x, sphere.position.y, sphere.position.z);
+// console.log(sphere.position.x, sphere.position.y, sphere.position.z);
 
 
 function setSize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
+	
+	if (camera.aspect < 1){
+		console.log('모바일 창 변경');
+		camera.position.set(100, 100, 300); 
+		scene.add(camera);
+	}else{
+		console.log('데스크톱 창 변경');
+		camera.position.set(100, 100, 50); 
+		scene.add(camera);
+	}
+
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.render(scene, camera);
 }
-
 
 
 // 이벤트
@@ -323,6 +355,7 @@ const preventDragClick = new PreventDragClick(canvas);
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 var meshes = spheres;
+
 
 
 canvas.addEventListener('click', e => {
@@ -352,14 +385,11 @@ function checkIntersects() {
 		item.object.name = 'clicked';
 		console.log(item.object.name);
 		console.log(bgSphere.material.map);
-		
+	
 		bgSphere.material.map = item.object.material.map;
-
 
 		// item.object.material.color.set('#474747');
 		
-
-
 		// scene.background = newColor;
 		console.log(scene.background);
 		break;
