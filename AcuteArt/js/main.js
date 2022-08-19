@@ -37,7 +37,7 @@ const infoOrgTexture = textureLoader.load(
 const infoTitleTexture = textureLoader.load(
 	'./img/infoTitle.png');
 const posterTexture = textureLoader.load(
-	'./img/poster.jpg');	
+	'./img/poster.jpg');
 
 
 const texture01 = textureLoader.load(
@@ -158,7 +158,7 @@ controls.update();
 // introSphere 포스터 텍스쳐 구
 
 const introSphereMaterial = new THREE.MeshBasicMaterial({
-map: randTexture
+	map: randTexture
 })
 const introSphereGeometry = new THREE.SphereGeometry(101, 132, 132);
 const introSphere = new THREE.Mesh(introSphereGeometry, introSphereMaterial);
@@ -220,10 +220,18 @@ let sphereMaterial;
 
 const spheres = [];
 let sphere;
+
+
 for (let i = 0; i < 16; i++) {
 
 
-	var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
+	var split = Math.floor(Math.random() * artworkTextures.length);
+
+	var randTexture = artworkTextures[split];
+	artworkTextures.splice(split, 1);
+
+	console.log(randTexture);
+
 
 	// console.log(randTexture);
 
@@ -295,7 +303,7 @@ function draw() {
 
 		sphere.position.x = 50 * (Math.cos(1 * timer + i));
 		sphere.position.y = 50 * (Math.sin(2 * timer + i));
-	
+
 
 
 	}
@@ -305,15 +313,15 @@ function draw() {
 		anim.play();
 		camera.aspect = window.innerWidth / window.innerHeight;
 
-			if (camera.aspect < 1){
-				console.log('모바일 창 로드');
-				camera.position.set(100, 100, 250); 
-				scene.add(camera);
-			}else{
-				console.log('데스크톱 창 로드');
-				camera.position.set(100, 100, 50); 
-				scene.add(camera);
-			}
+		if (camera.aspect < 1) {
+			console.log('모바일 창 로드');
+			camera.position.set(100, 100, 250);
+			scene.add(camera);
+		} else {
+			console.log('데스크톱 창 로드');
+			camera.position.set(100, 100, 50);
+			scene.add(camera);
+		}
 		// camera.position.set(100, 100, 500); //desktop
 
 	})
@@ -333,14 +341,14 @@ function draw() {
 function setSize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
-	
-	if (camera.aspect < 1){
+
+	if (camera.aspect < 1) {
 		console.log('모바일 창 변경');
-		camera.position.set(100, 100, 250); 
+		camera.position.set(100, 100, 250);
 		scene.add(camera);
-	}else{
+	} else {
 		console.log('데스크톱 창 변경');
-		camera.position.set(100, 100, 50); 
+		camera.position.set(100, 100, 50);
 		scene.add(camera);
 	}
 
@@ -385,11 +393,11 @@ function checkIntersects() {
 		item.object.name = 'clicked';
 		console.log(item.object.name);
 		console.log(bgSphere.material.map);
-	
+
 		bgSphere.material.map = item.object.material.map;
 
 		// item.object.material.color.set('#474747');
-		
+
 		// scene.background = newColor;
 		console.log(scene.background);
 		break;
