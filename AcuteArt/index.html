@@ -8,7 +8,7 @@
 	<title>Acute Art</title>
 	<link rel="icon" type="image/x-icon" href="./img/favicon.png">
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-	<link rel="stylesheet" href="./main.css?v=0.5">
+	<link rel="stylesheet" href="./main.css?v=1.8">
 	<script src="./js/lottie.min.js"></script>
 </head>
 
@@ -17,7 +17,7 @@
 	<div class="cursor"></div>
 	<canvas id="three-canvas"></canvas>
 
-	<script src="js/main.js" type="module"></script>
+	<script src="js/main.js?v=1.7" type="module"></script>
 
 	<!-- INTRO / Lottie JS  -->
 
@@ -29,7 +29,7 @@
 	<script>
 		$(document).ready(function () {
 			$(".container").click(function () {
-				$(".container").delay(2800).fadeOut(2000);
+				$(".container").delay(2500).fadeOut(500);
 			});
 		});
 	</script>
@@ -45,7 +45,6 @@
 			autoplay: false
 		})
 	</script>
-
 
 	<div class="modal">
 		<div id="wrap" class="info">
@@ -65,6 +64,24 @@
 	<script>
 		$("a").click(function () {
 			$("#popup").fadeToggle("slow");
+		});
+	</script>
+
+	<div class="loading">
+		<div class="loader">
+			<div class="dot">L</div>
+			<div class="dot">O</div>
+			<div class="dot">A</div>
+			<div class="dot">D</div>
+			<div class="dot">I</div>
+			<div class="dot">N</div>
+			<div class="dot">G</div>
+		</div>
+	</div>
+
+	<script>
+		$(window).on('load',function () {
+			$('.loading').fadeOut(100);
 		});
 	</script>
 
