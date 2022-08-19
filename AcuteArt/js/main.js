@@ -234,9 +234,9 @@ for (let i = 0; i < 16; i++) {
 
 
 	sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-	sphere.position.x = (Math.random() - 0.5) * 130;
-	sphere.position.y = (Math.random() - 0.5) * 130;
-	sphere.position.z = (Math.random() - 0.5) * 130;
+	sphere.position.x = (Math.random() - 0.5) * 120;
+	sphere.position.y = (Math.random() - 0.5) * 120;
+	sphere.position.z = (Math.random() - 0.5) * 120;
 
 	scene.add(sphere);
 	spheres.push(sphere);
