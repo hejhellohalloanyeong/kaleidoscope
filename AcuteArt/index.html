@@ -52,8 +52,13 @@
 		</div>
 		<div id="popup" class="info">
 			<ul class="seperate">
-				<li class="text">구를 당겨 눈 안으로 들어가 보세요!</li>
-				<li class="text">작은 안구를 클릭하여 가상의 전시를 즐겨 보세요!</li>
+				<li class="text">구를 확대하여 눈 안으로 들어가 보세요.</li>
+				<li class="text">작은 안구를 클릭하여 가상의 전시를 즐겨 보세요.</li>
+			</ul>
+
+			<ul class="seperate">
+				<li class="text">Zoom in on the sphere to go into the eyeball.</li>
+				<li class="text">Enjoy the virtual exhibition clicking the small eyeballs.</li>
 			</ul>
 			<a href="#" class="close"><i class="uil uil-times"></i></a>
 
@@ -69,18 +74,14 @@
 
 	<div class="loading">
 		<div class="loader">
-			<div class="dot">L</div>
-			<div class="dot">O</div>
-			<div class="dot">A</div>
-			<div class="dot">D</div>
-			<div class="dot">I</div>
-			<div class="dot">N</div>
-			<div class="dot">G</div>
+			<div class="ball"></div>
+			<div class="ball"></div>
+			<div class="ball"></div>
 		</div>
 	</div>
 
 	<script>
-		$(window).on('load',function () {
+		$(window).on('load', function () {
 			$('.loading').fadeOut(100);
 		});
 	</script>
