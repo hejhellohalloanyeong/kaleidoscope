@@ -307,7 +307,7 @@ function draw() {
 
 			if (camera.aspect < 1){
 				console.log('모바일 창 로드');
-				camera.position.set(100, 100, 300); 
+				camera.position.set(100, 100, 280); 
 				scene.add(camera);
 			}else{
 				console.log('데스크톱 창 로드');
@@ -336,7 +336,7 @@ function setSize() {
 	
 	if (camera.aspect < 1){
 		console.log('모바일 창 변경');
-		camera.position.set(100, 100, 300); 
+		camera.position.set(100, 100, 280); 
 		scene.add(camera);
 	}else{
 		console.log('데스크톱 창 변경');
