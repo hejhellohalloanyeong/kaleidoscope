@@ -36,6 +36,8 @@ const infoOrgTexture = textureLoader.load(
 	'./img/infoOrg.png');
 const infoTitleTexture = textureLoader.load(
 	'./img/infoTitle.png');
+const posterTexture = textureLoader.load(
+	'./img/poster.jpg');	
 
 
 const texture01 = textureLoader.load(
@@ -138,20 +140,20 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI / 2;
 controls.enableDamping = true;
 controls.maxDistance = 200;
+controls.enablePan = false;
+controls.update();
 
 
-// posterSphere 포스터 텍스쳐 구
+// introSphere 포스터 텍스쳐 구
 
-const posterTexture = textureLoader.load(
-	'./img/poster.jpg');
-const posterSphereMaterial = new THREE.MeshBasicMaterial({
-map: posterTexture
+const introSphereMaterial = new THREE.MeshBasicMaterial({
+map: randTexture
 })
-const posterSphereGeometry = new THREE.SphereGeometry(101, 132, 132);
-const posterSphere = new THREE.Mesh(posterSphereGeometry, posterSphereMaterial);
-posterSphere.position.set(0, 0, 0);
-posterSphere.rotation.x = -Math.PI * 0.5;
-scene.add(posterSphere);
+const introSphereGeometry = new THREE.SphereGeometry(101, 132, 132);
+const introSphere = new THREE.Mesh(introSphereGeometry, introSphereMaterial);
+introSphere.position.set(0, 0, 0);
+introSphere.rotation.x = -Math.PI * 0.5;
+scene.add(introSphere);
 
 
 //Geometry
@@ -236,7 +238,7 @@ bgSphere.rotation.x = -Math.PI * 0.5;
 bgSphere.position.set(0, 0, 0);
 infoDate.position.set(-12, 15, -70);
 infoArtist.rotation.x = -Math.PI * 0.5;
-infoArtist.position.set(0, 0, -10);
+infoArtist.position.set(0.5, 0, -10);
 infoOrg.position.set(0, 10, 50);
 infoTitle.position.set(-25, 45, -70);
 
@@ -256,7 +258,7 @@ function draw() {
 
 
 	bgSphere.rotation.y = time * 0.3;
-	posterSphere.rotation.y = time * 0.3;
+	introSphere.rotation.y = time * 0.3;
 
 	spheres[0].rotation.x = time * 1.3;
 	spheres[1].rotation.y = time * 1.5;
@@ -272,7 +274,7 @@ function draw() {
 	spheres[11].rotation.z = time * 0.4;
 	spheres[12].rotation.y = time * 1.1;
 	spheres[13].rotation.x = time * 0.9;
-	spheres[14].rotation.y = time * 0.1;
+	spheres[14].rotation.y = time * 0.6;
 	spheres[15].rotation.z = time * 0.3;
 
 
