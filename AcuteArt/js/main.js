@@ -36,6 +36,8 @@ const infoOrgTexture = textureLoader.load(
 	'./img/infoOrg.png');
 const infoTitleTexture = textureLoader.load(
 	'./img/infoTitle.png');
+const posterTexture = textureLoader.load(
+	'./img/poster.jpg');	
 
 
 const texture01 = textureLoader.load(
@@ -119,9 +121,20 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	1000
 );
-camera.position.set(100, 100, 20); //desktop
-// camera.position.set(100, 100, 250); //mobile
-scene.add(camera);
+
+
+
+// camera.position.set(100, 100, 50); //desktop
+// // camera.position.set(100, 100, 250); //mobile
+// scene.add(camera);
+
+
+
+
+
+
+
+
 
 // Light
 
@@ -137,21 +150,21 @@ scene.add(pointLight);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.maxPolarAngle = Math.PI / 2;
 controls.enableDamping = true;
-controls.maxDistance = 200;
+controls.maxDistance = 300;
+controls.enablePan = false;
+controls.update();
 
 
-// posterSphere 포스터 텍스쳐 구
+// introSphere 포스터 텍스쳐 구
 
-const posterTexture = textureLoader.load(
-	'./img/poster.jpg');
-const posterSphereMaterial = new THREE.MeshBasicMaterial({
-map: posterTexture
+const introSphereMaterial = new THREE.MeshBasicMaterial({
+map: randTexture
 })
-const posterSphereGeometry = new THREE.SphereGeometry(101, 132, 132);
-const posterSphere = new THREE.Mesh(posterSphereGeometry, posterSphereMaterial);
-posterSphere.position.set(0, 0, 0);
-posterSphere.rotation.x = -Math.PI * 0.5;
-scene.add(posterSphere);
+const introSphereGeometry = new THREE.SphereGeometry(101, 132, 132);
+const introSphere = new THREE.Mesh(introSphereGeometry, introSphereMaterial);
+introSphere.position.set(0, 0, 0);
+introSphere.rotation.x = -Math.PI * 0.5;
+scene.add(introSphere);
 
 
 //Geometry
@@ -212,7 +225,7 @@ for (let i = 0; i < 16; i++) {
 
 	var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
 
-	console.log(randTexture);
+	// console.log(randTexture);
 
 	sphereMaterial = new THREE.MeshBasicMaterial({
 		side: DoubleSide,
@@ -236,7 +249,7 @@ bgSphere.rotation.x = -Math.PI * 0.5;
 bgSphere.position.set(0, 0, 0);
 infoDate.position.set(-12, 15, -70);
 infoArtist.rotation.x = -Math.PI * 0.5;
-infoArtist.position.set(0, 0, -10);
+infoArtist.position.set(0.7, 0, -10);
 infoOrg.position.set(0, 10, 50);
 infoTitle.position.set(-25, 45, -70);
 
@@ -256,7 +269,7 @@ function draw() {
 
 
 	bgSphere.rotation.y = time * 0.3;
-	posterSphere.rotation.y = time * 0.3;
+	introSphere.rotation.y = time * 0.3;
 
 	spheres[0].rotation.x = time * 1.3;
 	spheres[1].rotation.y = time * 1.5;
@@ -272,7 +285,7 @@ function draw() {
 	spheres[11].rotation.z = time * 0.4;
 	spheres[12].rotation.y = time * 1.1;
 	spheres[13].rotation.x = time * 0.9;
-	spheres[14].rotation.y = time * 0.1;
+	spheres[14].rotation.y = time * 0.6;
 	spheres[15].rotation.z = time * 0.3;
 
 
@@ -290,7 +303,18 @@ function draw() {
 
 	open.addEventListener('click', () => {
 		anim.play();
-		camera.position.set(100, 100, 50); //desktop
+		camera.aspect = window.innerWidth / window.innerHeight;
+
+			if (camera.aspect < 1){
+				console.log('모바일 창 로드');
+				camera.position.set(100, 100, 250); 
+				scene.add(camera);
+			}else{
+				console.log('데스크톱 창 로드');
+				camera.position.set(100, 100, 50); 
+				scene.add(camera);
+			}
+		// camera.position.set(100, 100, 500); //desktop
 
 	})
 
@@ -303,16 +327,26 @@ function draw() {
 }
 
 
-console.log(sphere.position.x, sphere.position.y, sphere.position.z);
+// console.log(sphere.position.x, sphere.position.y, sphere.position.z);
 
 
 function setSize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
+	
+	if (camera.aspect < 1){
+		console.log('모바일 창 변경');
+		camera.position.set(100, 100, 250); 
+		scene.add(camera);
+	}else{
+		console.log('데스크톱 창 변경');
+		camera.position.set(100, 100, 50); 
+		scene.add(camera);
+	}
+
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.render(scene, camera);
 }
-
 
 
 // 이벤트
@@ -321,6 +355,7 @@ const preventDragClick = new PreventDragClick(canvas);
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 var meshes = spheres;
+
 
 
 canvas.addEventListener('click', e => {
@@ -350,14 +385,11 @@ function checkIntersects() {
 		item.object.name = 'clicked';
 		console.log(item.object.name);
 		console.log(bgSphere.material.map);
-		
+	
 		bgSphere.material.map = item.object.material.map;
-
 
 		// item.object.material.color.set('#474747');
 		
-
-
 		// scene.background = newColor;
 		console.log(scene.background);
 		break;
