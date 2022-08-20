@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Acute Art</title>
+	<link rel="icon" type="image/x-icon" href="./img/favicon.png">
+	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+	<link rel="stylesheet" href="./main.css?v=2.0">
+	<script src="./js/lottie.min.js"></script>
+</head>
+
+<body>
+	<div class="cursor"></div>
+	<canvas id="three-canvas"></canvas>
+
+	<script src="js/main.js?v=2.0" type="module"></script>
+
+	<!-- INTRO / Lottie JS  -->
+	<div class="container">
+		<div id="lottie" class="open"></div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(".container").click(function () {
+				$(".container").delay(2500).fadeOut(500);
+
+			});
+		});
+	</script>
+	<script>
+		let open = document.getElementById('lottie');
+
+
+		var anim = bodymovin.loadAnimation({
+			container: open,
+			path: './data/Test7.json',
+			renderer: 'svg',
+			loop: false,
+			autoplay: false
+		})
+	</script>
+
+	<div class="modal">
+		<div id="wrap" class="info">
+			<a href="#"><i class="uil uil-question-circle"></i></a>
+		</div>
+		<div id="popup" class="info">
+			<ul class="seperate">
+				<li class="text">구를 확대하여 눈 안으로 들어가 보세요.</li>
+				<li class="text">작은 안구를 클릭하여 가상의 전시를 즐겨 보세요.</li>
+			</ul>
+
+			<ul class="seperate">
+				<li class="text">Zoom in on the sphere to go into the eyeball.</li>
+				<li class="text">Enjoy the virtual exhibition by clicking the small eyeballs.</li>
+			</ul>
+			<a href="#" class="close"><i class="uil uil-times"></i></a>
+
+		</div>
+	</div>
+
+
+	<script>
+		$("a").click(function () {
+			$("#popup").fadeToggle("slow");
+		});
+	</script>
+
+	<div class="loading">
+		<div class="loader">
+			<div class="ball"></div>
+			<div class="ball"></div>
+			<div class="ball"></div>
+		</div>
+	</div>
+
+	<script>
+		$(window).on('load', function () {
+			$('.loading').fadeOut(300);
+		});
+	</script>
+
+	<!-- MAIN / THREE JS -->
+
+	<!-- 01_ ADensityNew (Horizontal)-->
+	<video 
+	id="video01_ADensityNew" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/ADensityNew_xdrFYuH3uh.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1659953989022"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 02_ AllAtAnyTime (Horizontal)-->
+	<video id="video02_AllAtAnyTime" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/AllAtAnyTime_cXyAUyrAqP.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954369647"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 03_ GiantDOKU-->
+	<video id="video03_GiantDOKU" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/GiantDOKU_alQxHY7rd8.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954377126"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 04_ HolidaySpace-->
+	<video id="video04_HolidaySpace" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/HolidaySpace_Pjn19m-yD.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954343539"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 05_ ImaginaryFriend-->
+	<video id="video05_ImaginaryFriend" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/ImaginaryFriend_YOYiVQXa7.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=16599543439084"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 06_ Language-->
+	<video id="video06_Language" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/Language_bV73INrk3Y.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954379400"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 07_ LightBulbManDressedAsLesSapeurs-->
+	<video id="video07_LightBulbMan" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/LightBulbManDressedAsLesSapeurs_yeyznqp_Un.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954370643"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 08_ LOVE-->
+	<video id="video08_LOVE" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/LOVE_7OkllHfRs.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954368593"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 09_ Lune-->
+	<video id="video09_Lune" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/Lune_E3xkspKld.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954377171"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 10_ Maratus Specious-->
+	<video id="video10_MaratusSpecious" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/Maratus_Specious_HfKbXkNl0K.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954366765"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 11_ RMBCity-->
+	<video id="video11_RMBCity" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/RMBCity_UInFAIyhk.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954382312"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 12_ TheFourTemperaments-->
+	<video id="video12_TheFourTemperaments" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/TheFourTemperaments_PWdh4TS-J.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954380628"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 13_ UltraLightBeamsofLove-->
+	<video id="video13_UltraLightBeamsofLove" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/UltraLightBeamsofLove_oGATR5TG8.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954382770"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 14_WillingToBeVulnerable (Horizontal)-->
+	<video id="video14_WillingToBeVulnerable" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/WillingToBeVulnerable_0Agk_HRGT.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954384988"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 15_ Worm (Horizontal)-->
+	<video id="video15_Worm" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/Worm_emAvCNRRyY.MP4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954350784"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+	<!-- 16_ WunderkammerCluster-->
+	<video id="video16_WunderkammerCluster" 
+	playsinline
+	muted 
+	loop 
+	autoplay
+	crossorigin="anonymous"
+	style="display:none">
+		<source
+			src="https://ik.imagekit.io/dahyunhwang0715/WunderkammerCluster_PCwEAXaZe.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1659954387385"
+			type='video/ogg; codecs="theora, vorbis"'>
+	</video>
+
+</body>
+
+</html>

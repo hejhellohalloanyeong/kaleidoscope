@@ -13,6 +13,7 @@ import {
 // ----- 메모: 배경 컬러값: #f0efeb / R:240 G:239 B:235
 
 // Texture Load
+
 const loadingManager = new THREE.LoadingManager();
 loadingManager.onStart = () => {
 	console.log('로드 시작');
@@ -73,30 +74,157 @@ const texture15 = textureLoader.load(
 const texture16 = textureLoader.load(
 	'./textures/artworks/16WunderkammerCluster.png');
 
-var artworkTextures = [texture01,
-	texture02,
-	texture03,
-	texture04,
-	texture05,
-	texture06,
-	texture07,
-	texture08,
-	texture09,
-	texture10,
-	texture11,
-	texture12,
-	texture13,
-	texture14,
-	texture15,
-	texture16
+// videoTexture	
+
+
+		let video01 = document.getElementById( 'video01_ADensityNew' );
+		let video02 = document.getElementById( 'video02_AllAtAnyTime' );
+		let video03 = document.getElementById( 'video03_GiantDOKU' );
+		let video04 = document.getElementById( 'video04_HolidaySpace' );
+		let video05 = document.getElementById( 'video05_ImaginaryFriend' );
+		let video06 = document.getElementById( 'video06_Language' );
+		let video07 = document.getElementById( 'video07_LightBulbMan' );
+		let video08 = document.getElementById( 'video08_LOVE' );
+		let video09 = document.getElementById( 'video09_Lune' );
+		let video10 = document.getElementById( 'video10_MaratusSpecious' );
+		let video11 = document.getElementById( 'video11_RMBCity' );
+		let video12 = document.getElementById( 'video12_TheFourTemperaments' );
+		let video13 = document.getElementById( 'video13_UltraLightBeamsofLove' );
+		let video14 = document.getElementById( 'video14_WillingToBeVulnerable' );
+		let video15 = document.getElementById( 'video15_Worm' );
+		let video16 = document.getElementById( 'video16_WunderkammerCluster' );
+	
+
+		video01.onloadeddata = function () {video01.play()};
+		video02.onloadeddata = function () {video02.play()};
+		video03.onloadeddata = function () {video03.play()};
+		video04.onloadeddata = function () {video04.play()};
+		video05.onloadeddata = function () {video05.play()};
+		video06.onloadeddata = function () {video06.play()};
+		video07.onloadeddata = function () {video07.play()};
+		video08.onloadeddata = function () {video08.play()};
+		video09.onloadeddata = function () {video09.play()};
+		video10.onloadeddata = function () {video10.play()};
+		video11.onloadeddata = function () {video11.play()};
+		video12.onloadeddata = function () {video12.play()};
+		video13.onloadeddata = function () {video13.play()};
+		video14.onloadeddata = function () {video14.play()};
+		video15.onloadeddata = function () {video15.play()};
+		video16.onloadeddata = function () {video16.play()};
+
+
+		
+		let video01Texture = new THREE.VideoTexture( video01 );
+		let video02Texture = new THREE.VideoTexture( video02 );
+		let video03Texture = new THREE.VideoTexture( video03 );
+		let video04Texture = new THREE.VideoTexture( video04 );
+		let video05Texture = new THREE.VideoTexture( video05 );
+		let video06Texture = new THREE.VideoTexture( video06 );
+		let video07Texture = new THREE.VideoTexture( video07 );
+		let video08Texture = new THREE.VideoTexture( video08 );
+		let video09Texture = new THREE.VideoTexture( video09 );
+		let video10Texture = new THREE.VideoTexture( video10 );
+		let video11Texture = new THREE.VideoTexture( video11 );
+		let video12Texture = new THREE.VideoTexture( video12 );
+		let video13Texture = new THREE.VideoTexture( video13 );
+		let video14Texture = new THREE.VideoTexture( video14 );
+		let video15Texture = new THREE.VideoTexture( video15 );
+		let video16Texture = new THREE.VideoTexture( video16 );
+	
+
+		video01Texture.minFilter = THREE.LinearFilter;
+		video01Texture.magFilter = THREE.LinearFilter;
+		video02Texture.minFilter = THREE.LinearFilter;
+		video02Texture.magFilter = THREE.LinearFilter;
+		video03Texture.minFilter = THREE.LinearFilter;
+		video03Texture.magFilter = THREE.LinearFilter;
+		video04Texture.minFilter = THREE.LinearFilter;
+		video04Texture.magFilter = THREE.LinearFilter;
+		video05Texture.minFilter = THREE.LinearFilter;
+		video05Texture.magFilter = THREE.LinearFilter;
+		video06Texture.minFilter = THREE.LinearFilter;
+		video06Texture.magFilter = THREE.LinearFilter;
+		video07Texture.minFilter = THREE.LinearFilter;
+		video07Texture.magFilter = THREE.LinearFilter;
+		video08Texture.minFilter = THREE.LinearFilter;
+		video08Texture.magFilter = THREE.LinearFilter;
+		video09Texture.minFilter = THREE.LinearFilter;
+		video09Texture.magFilter = THREE.LinearFilter;
+		video10Texture.minFilter = THREE.LinearFilter;
+		video10Texture.magFilter = THREE.LinearFilter;
+		video11Texture.minFilter = THREE.LinearFilter;
+		video11Texture.magFilter = THREE.LinearFilter;
+		video12Texture.minFilter = THREE.LinearFilter;
+		video12Texture.magFilter = THREE.LinearFilter;
+		video13Texture.minFilter = THREE.LinearFilter;
+		video13Texture.magFilter = THREE.LinearFilter;
+		video14Texture.minFilter = THREE.LinearFilter;
+		video14Texture.magFilter = THREE.LinearFilter;
+		video15Texture.minFilter = THREE.LinearFilter;
+		video15Texture.magFilter = THREE.LinearFilter;
+		video16Texture.minFilter = THREE.LinearFilter;
+		video16Texture.magFilter = THREE.LinearFilter;
+
+
+		video01Texture.name = 'video_01';
+		video02Texture.name = 'video_02';
+		video03Texture.name = 'video_03';
+		video04Texture.name = 'video_04';
+		video05Texture.name = 'video_05';
+		video06Texture.name = 'video_06';
+		video07Texture.name = 'video_07';
+		video08Texture.name = 'video_08';
+		video09Texture.name = 'video_09';
+		video10Texture.name = 'video_10';
+		video11Texture.name = 'video_11';
+		video12Texture.name = 'video_12';
+		video13Texture.name = 'video_13';
+		video14Texture.name = 'video_14';
+		video15Texture.name = 'video_15';
+		video16Texture.name = 'video_16';
+
+		video01Texture.wrapS = video01Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video02Texture.wrapS = video02Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video03Texture.wrapS = video03Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video04Texture.wrapS = video04Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video05Texture.wrapS = video05Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video06Texture.wrapS = video06Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video07Texture.wrapS = video07Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video08Texture.wrapS = video08Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video09Texture.wrapS = video09Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video10Texture.wrapS = video10Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video11Texture.wrapS = video11Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video12Texture.wrapS = video12Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video13Texture.wrapS = video13Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video14Texture.wrapS = video14Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video15Texture.wrapS = video15Texture.wrapT = THREE.ClampToEdgeWrapping;
+		video16Texture.wrapS = video16Texture.wrapT = THREE.ClampToEdgeWrapping;
+	
+
+var artworkTextures = [
+	video01Texture,
+	video02Texture,
+	video03Texture,
+	video04Texture,
+	video05Texture,
+	video06Texture,
+	video07Texture,
+	video08Texture,
+	video09Texture,
+	video10Texture,
+	video11Texture,
+	video12Texture,
+	video13Texture,
+	video14Texture,
+	video15Texture,
+	video16Texture
 ]
 
 
 var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
+		
+		
 
-
-
-// infoDateTextrue.wrapS = infoDateTextrue.wrapT = THREE.RepeatWrapping;
 
 
 
@@ -223,16 +351,12 @@ let sphere;
 
 
 for (let i = 0; i < 16; i++) {
-
-
 	var split = Math.floor(Math.random() * artworkTextures.length);
 
 	var randTexture = artworkTextures[split];
 	artworkTextures.splice(split, 1);
 
 	console.log(randTexture);
-
-
 	// console.log(randTexture);
 
 	sphereMaterial = new THREE.MeshBasicMaterial({
@@ -248,7 +372,7 @@ for (let i = 0; i < 16; i++) {
 
 	scene.add(sphere);
 	spheres.push(sphere);
-}
+
 
 
 // circle.rotation.x = - Math.PI * 0.5;
@@ -264,6 +388,7 @@ infoTitle.position.set(-25, 45, -70);
 
 
 scene.add(bgSphere, infoDate, infoArtist, infoOrg, infoTitle);
+}
 
 
 
@@ -271,6 +396,9 @@ scene.add(bgSphere, infoDate, infoArtist, infoOrg, infoTitle);
 const clock = new THREE.Clock();
 
 function draw() {
+
+
+
 	const delta = clock.getDelta();
 	const time = clock.getElapsedTime();
 	const timer = 0.0001 * Date.now();
@@ -305,7 +433,6 @@ function draw() {
 		sphere.position.y = 50 * (Math.sin(2 * timer + i));
 
 
-
 	}
 
 
@@ -315,7 +442,7 @@ function draw() {
 
 		if (camera.aspect < 1) {
 			console.log('모바일 창 로드');
-			camera.position.set(100, 100, 250);
+			camera.position.set(100, 120, 250);
 			scene.add(camera);
 		} else {
 			console.log('데스크톱 창 로드');
@@ -327,15 +454,21 @@ function draw() {
 	})
 
 
+	video01Texture.needsUpdate = true;
+	video02Texture.needsUpdate = true;
+	video03Texture.needsUpdate = true;
+	video04Texture.needsUpdate = true;
+	video05Texture.needsUpdate = true;
+	video06Texture.needsUpdate = true;
+
 
 	controls.update();
 
 	renderer.render(scene, camera);
-	renderer.setAnimationLoop(draw);
+	requestAnimationFrame(draw);
+	// renderer.setAnimationLoop(draw);
 }
 
-
-// console.log(sphere.position.x, sphere.position.y, sphere.position.z);
 
 
 function setSize() {
@@ -347,6 +480,10 @@ function setSize() {
 
 
 // 이벤트
+
+
+
+
 window.addEventListener('resize', setSize);
 const preventDragClick = new PreventDragClick(canvas);
 const raycaster = new THREE.Raycaster();
@@ -369,22 +506,14 @@ function checkIntersects() {
 	if (preventDragClick.mouseMoved) return;
 
 	raycaster.setFromCamera(mouse, camera);
-
 	const intersects = raycaster.intersectObjects(meshes);
-
-	// if(intersects.length > 0) {
-	// 	document.body.style.cursor = 'pointer';
-	// } else {
-	// 	document.body.style.cursor = 'default'
-	// }
 
 	for (const item of intersects) {
 		item.object.name = 'clicked';
 		console.log(item.object.name);
-		console.log(bgSphere.material.map);
+		// console.log(bgSphere.material.map);
 
 		bgSphere.material.map = item.object.material.map;
-
 		// item.object.material.color.set('#474747');
 		// scene.background = newColor;
 		console.log(scene.background);
@@ -394,3 +523,7 @@ function checkIntersects() {
 
 
 draw();
+
+
+
+
