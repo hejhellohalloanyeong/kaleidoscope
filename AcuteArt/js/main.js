@@ -12,16 +12,16 @@ import {
 // Texture Load
 const loadingManager = new THREE.LoadingManager();
 loadingManager.onStart = () => {
-	console.log('로드 시작');
+	console.log('Load start');
 };
 loadingManager.onProgress = img => {
-	console.log(img + ' 로드 중');
+	console.log(img + ' is Loading...');
 };
 loadingManager.onLoad = () => {
-	console.log('로드 완료');
+	console.log('Load Completed');
 };
 loadingManager.onError = () => {
-	console.log('로드 에러');
+	console.log('Load ERROR');
 };
 const textureLoader = new THREE.TextureLoader(loadingManager);
 
@@ -35,7 +35,6 @@ const infoTitleTexture = textureLoader.load(
 	'./img/infoTitle.png');
 const posterTexture = textureLoader.load(
 	'./img/poster.jpg');
-
 
 const texture01 = textureLoader.load(
 	'./textures/artworks/01ADensityNew.png');
@@ -112,7 +111,6 @@ const camera = new THREE.PerspectiveCamera(
 	1000
 );
 
-
 // Light
 const ambientLight = new THREE.AmbientLight('white', 1);
 scene.add(ambientLight);
@@ -127,7 +125,6 @@ controls.enableDamping = true;
 controls.maxDistance = 300;
 controls.enablePan = false;
 controls.update();
-
 
 // introSphere 
 const introSphereMaterial = new THREE.MeshBasicMaterial({
@@ -146,7 +143,6 @@ const infoDateGeometry = new THREE.PlaneGeometry(78, 26);
 const infoArtistGeometry = new THREE.PlaneGeometry(112.5, 100);
 const infoOrgGeometry = new THREE.PlaneGeometry(120, 10);
 const infoTitleGeometry = new THREE.PlaneGeometry(50, 12.5);
-
 
 //Material
 const bgSphereMaterial = new THREE.MeshBasicMaterial({
@@ -192,7 +188,6 @@ for (let i = 0; i < 16; i++) {
 	var split = Math.floor(Math.random() * artworkTextures.length);
 	var randTexture = artworkTextures[split];
 	artworkTextures.splice(split, 1);
-	console.log(randTexture);
 
 	sphereMaterial = new THREE.MeshBasicMaterial({
 		side: DoubleSide,
@@ -203,7 +198,6 @@ for (let i = 0; i < 16; i++) {
 	sphere.position.x = (Math.random() - 0.5) * 120;
 	sphere.position.y = (Math.random() - 0.5) * 120;
 	sphere.position.z = (Math.random() - 0.5) * 120;
-
 	scene.add(sphere);
 	spheres.push(sphere);
 }
@@ -215,20 +209,16 @@ infoArtist.rotation.x = -Math.PI * 0.5;
 infoArtist.position.set(0.7, 0, -10);
 infoOrg.position.set(0, 10, 50);
 infoTitle.position.set(-25, 45, -70);
-
 scene.add(bgSphere, infoDate, infoArtist, infoOrg, infoTitle);
 
-// 그리기
+// draw
 const clock = new THREE.Clock();
 function draw() {
 	const delta = clock.getDelta();
 	const time = clock.getElapsedTime();
 	const timer = 0.0001 * Date.now();
-
-
 	bgSphere.rotation.y = time * 0.3;
 	introSphere.rotation.y = time * 0.3;
-
 	spheres[0].rotation.x = time * 1.3;
 	spheres[1].rotation.y = time * 1.5;
 	spheres[2].rotation.z = time * 1.7;
@@ -246,24 +236,19 @@ function draw() {
 	spheres[14].rotation.y = time * 0.6;
 	spheres[15].rotation.z = time * 0.3;
 
-
 	for (let i = 0, il = spheres.length; i < il; i++) {
 		const sphere = spheres[i];
 		sphere.position.x = 50 * (Math.cos(1 * timer + i));
 		sphere.position.y = 50 * (Math.sin(2 * timer + i));
 	}
-
-
 	open.addEventListener('click', () => {
 		anim.play();
 		camera.aspect = window.innerWidth / window.innerHeight;
 
 		if (camera.aspect < 1) {
-			console.log('모바일 창 로드');
 			camera.position.set(100, 100, 250);
 			scene.add(camera);
 		} else {
-			console.log('데스크톱 창 로드');
 			camera.position.set(100, 100, 50);
 			scene.add(camera);
 		}
@@ -295,22 +280,15 @@ canvas.addEventListener('click', e => {
 });
 
 function checkIntersects() {
-	console.log(preventDragClick.mouseMoved);
 	if (preventDragClick.mouseMoved) return;
-	raycaster.setFromCamera(mouse, camera);
-	const intersects = raycaster.intersectObjects(meshes);
 
+	raycaster.setFromCamera(mouse, camera);
+
+	const intersects = raycaster.intersectObjects(meshes);
 	for (const item of intersects) {
 		item.object.name = 'clicked';
-		console.log(item.object.name);
-		console.log(bgSphere.material.map);
-
 		bgSphere.material.map = item.object.material.map;
-
-		console.log(scene.background);
 		break;
 	}
 }
-
-
 draw();
