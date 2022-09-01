@@ -9,9 +9,6 @@ import {
 	PreventDragClick
 } from './PreventDragClick.js';
 
-
-// ----- 메모: 배경 컬러값: #f0efeb / R:240 G:239 B:235
-
 // Texture Load
 const loadingManager = new THREE.LoadingManager();
 loadingManager.onStart = () => {
@@ -73,7 +70,8 @@ const texture15 = textureLoader.load(
 const texture16 = textureLoader.load(
 	'./textures/artworks/16WunderkammerCluster.png');
 
-var artworkTextures = [texture01,
+var artworkTextures = [
+	texture01,
 	texture02,
 	texture03,
 	texture04,
@@ -91,14 +89,7 @@ var artworkTextures = [texture01,
 	texture16
 ]
 
-
 var randTexture = artworkTextures[Math.floor(Math.random() * artworkTextures.length)];
-
-
-
-// infoDateTextrue.wrapS = infoDateTextrue.wrapT = THREE.RepeatWrapping;
-
-
 
 // Renderer
 const canvas = document.querySelector('#three-canvas');
@@ -111,7 +102,6 @@ renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
 
 // Scene
 const scene = new THREE.Scene();
-// scene.fog = new THREE.Fog('#f0efeb', 1, 200);
 scene.background = new THREE.Color('black');
 
 // Camera
@@ -123,28 +113,12 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 
-
-// camera.position.set(100, 100, 50); //desktop
-// // camera.position.set(100, 100, 250); //mobile
-// scene.add(camera);
-
-
-
-
-
-
-
-
-
 // Light
-
 const ambientLight = new THREE.AmbientLight('white', 1);
 scene.add(ambientLight);
-
 const pointLight = new THREE.PointLight('white', 1, 100);
 pointLight.position.set(10, 200, 10);
 scene.add(pointLight);
-
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -155,8 +129,7 @@ controls.enablePan = false;
 controls.update();
 
 
-// introSphere 포스터 텍스쳐 구
-
+// introSphere 
 const introSphereMaterial = new THREE.MeshBasicMaterial({
 	map: randTexture
 })
@@ -168,7 +141,6 @@ scene.add(introSphere);
 
 
 //Geometry
-// const circleGeometry = new THREE.CircleGeometry(100, 132);
 const bgSphereGeometry = new THREE.SphereGeometry(100, 132, 132);
 const infoDateGeometry = new THREE.PlaneGeometry(78, 26);
 const infoArtistGeometry = new THREE.PlaneGeometry(112.5, 100);
@@ -177,9 +149,6 @@ const infoTitleGeometry = new THREE.PlaneGeometry(50, 12.5);
 
 
 //Material
-// const circleMaterial = new THREE.MeshStandardMaterial({
-// 	color: '#f0efeb'
-// });
 const bgSphereMaterial = new THREE.MeshBasicMaterial({
 	map: posterTexture,
 	side: DoubleSide,
@@ -206,7 +175,6 @@ const infoTitleMaterial = new THREE.MeshBasicMaterial({
 });
 
 // Mesh
-// const circle = new THREE.Mesh(circleGeometry, circleMaterial);
 const bgSphere = new THREE.Mesh(bgSphereGeometry, bgSphereMaterial);
 const infoDate = new THREE.Mesh(infoDateGeometry, infoDateMaterial);
 const infoArtist = new THREE.Mesh(infoArtistGeometry, infoArtistMaterial);
@@ -217,29 +185,19 @@ const infoTitle = new THREE.Mesh(infoTitleGeometry, infoTitleMaterial);
 // [ Spheres ]
 const sphereGeometry = new THREE.SphereGeometry(12, 64, 64);
 let sphereMaterial;
-
 const spheres = [];
 let sphere;
 
-
 for (let i = 0; i < 16; i++) {
-
-
 	var split = Math.floor(Math.random() * artworkTextures.length);
-
 	var randTexture = artworkTextures[split];
 	artworkTextures.splice(split, 1);
-
 	console.log(randTexture);
-
-
-	// console.log(randTexture);
 
 	sphereMaterial = new THREE.MeshBasicMaterial({
 		side: DoubleSide,
 		map: randTexture
 	});
-
 
 	sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 	sphere.position.x = (Math.random() - 0.5) * 120;
@@ -250,9 +208,6 @@ for (let i = 0; i < 16; i++) {
 	spheres.push(sphere);
 }
 
-
-// circle.rotation.x = - Math.PI * 0.5;
-// circle.position.set(0, 0, 0);
 bgSphere.rotation.x = -Math.PI * 0.5;
 bgSphere.position.set(0, 0, 0);
 infoDate.position.set(-12, 15, -70);
@@ -261,15 +216,10 @@ infoArtist.position.set(0.7, 0, -10);
 infoOrg.position.set(0, 10, 50);
 infoTitle.position.set(-25, 45, -70);
 
-
-
 scene.add(bgSphere, infoDate, infoArtist, infoOrg, infoTitle);
-
-
 
 // 그리기
 const clock = new THREE.Clock();
-
 function draw() {
 	const delta = clock.getDelta();
 	const time = clock.getElapsedTime();
@@ -298,14 +248,9 @@ function draw() {
 
 
 	for (let i = 0, il = spheres.length; i < il; i++) {
-
 		const sphere = spheres[i];
-
 		sphere.position.x = 50 * (Math.cos(1 * timer + i));
 		sphere.position.y = 50 * (Math.sin(2 * timer + i));
-
-
-
 	}
 
 
@@ -322,21 +267,12 @@ function draw() {
 			camera.position.set(100, 100, 50);
 			scene.add(camera);
 		}
-		// camera.position.set(100, 100, 500); //desktop
-
 	})
 
-
-
 	controls.update();
-
 	renderer.render(scene, camera);
 	renderer.setAnimationLoop(draw);
 }
-
-
-// console.log(sphere.position.x, sphere.position.y, sphere.position.z);
-
 
 function setSize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
@@ -345,38 +281,24 @@ function setSize() {
 	renderer.render(scene, camera);
 }
 
-
-// 이벤트
+// event
 window.addEventListener('resize', setSize);
 const preventDragClick = new PreventDragClick(canvas);
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 var meshes = spheres;
 
-
-
 canvas.addEventListener('click', e => {
 	mouse.x = e.clientX / canvas.clientWidth * 2 - 1;
 	mouse.y = -(e.clientY / canvas.clientHeight * 2 - 1);
-	// console.log(mouse);
 	checkIntersects();
 });
-
-
 
 function checkIntersects() {
 	console.log(preventDragClick.mouseMoved);
 	if (preventDragClick.mouseMoved) return;
-
 	raycaster.setFromCamera(mouse, camera);
-
 	const intersects = raycaster.intersectObjects(meshes);
-
-	// if(intersects.length > 0) {
-	// 	document.body.style.cursor = 'pointer';
-	// } else {
-	// 	document.body.style.cursor = 'default'
-	// }
 
 	for (const item of intersects) {
 		item.object.name = 'clicked';
@@ -385,8 +307,6 @@ function checkIntersects() {
 
 		bgSphere.material.map = item.object.material.map;
 
-		// item.object.material.color.set('#474747');
-		// scene.background = newColor;
 		console.log(scene.background);
 		break;
 	}

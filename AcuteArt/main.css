@@ -108,7 +108,6 @@ body {
 }
 
 /* Information Modal */
-
 #wrap {
     padding-bottom: 10px;
 
@@ -170,8 +169,6 @@ i.uil-times {
 .modal {
     overflow-y: visible !important;
 }
-
-
 
 /* THREE JS */
 #three-canvas {
